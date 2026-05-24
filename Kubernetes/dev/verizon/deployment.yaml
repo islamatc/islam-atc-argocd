@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: myimage-deployment
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: myimage
+  template:
+    metadata:
+      labels:
+        app: myimage
+    spec:
+      containers:
+      - name: myimage-container
+        image: islamatc/myimage:v1.6
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
