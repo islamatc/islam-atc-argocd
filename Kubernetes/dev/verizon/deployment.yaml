@@ -5,7 +5,7 @@ metadata:
   name: myimage-deployment
 
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: myimage
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myimage-container
-        image: islamatc/myimage:v1.6
+        image: islamatc/myimage:v1.5
         imagePullPolicy: Always
         ports:
         - containerPort: 80
