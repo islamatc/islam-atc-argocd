@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myimage-prod
+  namespace: argocd
+spec:
+  project: learning
+  source:
+    repoURL: https://github.com/islamatc/islam-atc-argocd.git
+    targetRevision: main
+    path: apps/myimage/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myimage-prod
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

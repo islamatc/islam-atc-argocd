@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: myimage-stage
+nameSuffix: -stage
+
+resources:
+  - ../../base
+
+patches:
+  - path: replica-patch.yaml
+
+images:
+  - name: islamatc/myimage
+    newTag: v1.5
+
+labels:
+  - pairs:
+      environment: stage
+    includeSelectors: true

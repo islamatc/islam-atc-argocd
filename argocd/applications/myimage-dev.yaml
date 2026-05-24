@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myimage-dev
+  namespace: argocd
+spec:
+  project: learning
+  source:
+    repoURL: https://github.com/islamatc/islam-atc-argocd.git
+    targetRevision: main
+    path: apps/myimage/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myimage-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
